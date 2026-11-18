@@ -1,14 +1,12 @@
 :root {
   color-scheme: light dark;
-  background: light-dark(#f0f2f1, #191e21);
+  background: light-dark(#f4eff2, #161215);
 }
 body {
   margin: 0;
-  padding: clamp(10px, 3vw, 44px) clamp(6px, 3vw, 36px);
 }
 body > main {
-  max-width: 1060px;
-  margin: 0 auto;
+  min-height: 100vh;
 }
 .icon-library {
   position: absolute;
@@ -25,29 +23,31 @@ body > main {
 
 #campus-stores {
   color-scheme: light dark;
-  --ink: light-dark(#202c35, #ecf0f0);
-  --quiet: light-dark(#526370, #b9c5cb);
-  --paper: light-dark(#fff, #232a30);
-  --desk: light-dark(#f3f5f5, #1d2328);
-  --nav: light-dark(#eaf0f1, #29333b);
-  --sel: light-dark(#233e4c, #c5dce4);
-  --inv: light-dark(#fff, #172b34);
-  --line: light-dark(#d2dcdf, #475158);
-  --memo: light-dark(#fff3d8, #3d3426);
-  --memotxt: light-dark(#65491e, #ead4a5);
-  --mark: light-dark(#bd502f, #f2a585);
-  --ok: light-dark(#e3f1e8, #2d4838);
-  --oktxt: light-dark(#25523d, #bedac8);
+  --ink: light-dark(#2e2a2d, #f2ecf0);
+  --quiet: light-dark(#5f5a5e, #c9bcc4);
+  --paper: light-dark(#fff, #1f1a1e);
+  --desk: light-dark(#faf7f9, #272026);
+  --nav: light-dark(#f5edf2, #2c222b);
+  --sel: light-dark(#5c0037, #f0b3d3);
+  --inv: light-dark(#fff, #3a0023);
+  --line: light-dark(#e6dde3, #4a3c46);
+  --memo: light-dark(#5c0037, #4b0a2f);
+  --memotxt: light-dark(#fff, #fbe3ef);
+  --mark: light-dark(#9e1b63, #f28dc2);
+  --ok: light-dark(#eaf3dc, #2d4220);
+  --oktxt: light-dark(#3b5212, #d2e6b8);
   background: var(--paper);
   color: var(--ink);
   font:
-    14px/1.48 "Inter",
-    "Arial",
+    14px/1.5 "Raleway",
+    "Segoe UI",
+    Arial,
     sans-serif;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   container-type: inline-size;
+  font-variant-numeric: lining-nums;
 }
 #campus-stores * {
   box-sizing: border-box;
@@ -63,14 +63,18 @@ body > main {
 }
 #campus-stores h1 {
   font:
-    600 clamp(24px, 4cqw, 33px)/1.13 "Archivo",
+    700 clamp(24px, 4cqw, 33px)/1.13 "Raleway",
+    "Segoe UI",
     system-ui,
     sans-serif;
-  letter-spacing: -0.05em;
+  letter-spacing: -0.01em;
+  color: var(--sel);
 }
 #campus-stores h2 {
   font-size: 20px;
-  letter-spacing: -0.03em;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--mark);
 }
 #campus-stores h3 {
   font-size: 15px;
@@ -170,7 +174,7 @@ body > main {
   font: inherit;
   color: var(--ink);
   border: 1px solid var(--line);
-  border-radius: 6px;
+  border-radius: 4px;
   background: var(--paper);
   min-width: 0;
   padding: 7px 9px;
@@ -194,8 +198,8 @@ body > main {
 }
 #campus-stores .shell {
   display: grid;
-  grid-template-columns: 155px minmax(0, 1fr);
-  min-height: 315px;
+  grid-template-columns: 190px minmax(0, 1fr);
+  flex: 1;
 }
 #campus-stores nav {
   background: var(--nav);
@@ -224,7 +228,7 @@ body > main {
   flex-shrink: 0;
 }
 #campus-stores .page {
-  padding: 17px 17px 20px;
+  padding: 22px clamp(17px, 3vw, 40px) 28px;
   min-width: 0;
 }
 #campus-stores .sectionhead,
@@ -368,4 +372,61 @@ body > main {
   #campus-stores select {
     min-height: 44px;
   }
+}
+
+#campus-stores .late {
+  background: var(--mark);
+  color: var(--inv);
+}
+#campus-stores .record.warn {
+  background: var(--nav);
+  border-left-color: var(--mark);
+}
+#campus-stores .record ul {
+  margin: 6px 0 0;
+  padding-left: 18px;
+}
+#campus-stores .kit li {
+  margin-top: 4px;
+}
+#campus-stores .kit li small {
+  display: block;
+}
+#campus-stores .row > div:last-child {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 6px;
+}
+#campus-stores button.link {
+  background: none;
+  border: 0;
+  padding: 0;
+  font-size: inherit;
+  color: var(--sel);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+#campus-stores .search input {
+  width: min(320px, 60vw);
+}
+#campus-stores h3.group {
+  margin: 14px 0 4px;
+  color: var(--quiet);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+@media (pointer: coarse) {
+  #campus-stores button.link {
+    min-height: 0;
+  }
+}
+#campus-stores .shift button:hover {
+  border-color: var(--memotxt);
+  background: color-mix(in srgb, var(--memotxt) 12%, transparent);
+}
+#campus-stores .shift button:focus-visible {
+  outline-color: var(--memotxt);
 }
